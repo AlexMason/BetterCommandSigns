@@ -9,6 +9,8 @@ Edit the configuration to your liking, and restart the server.
 ### How to use
 Place a sign wherever you would like, and then use the commands below.  After a command, you right click the sign you want to apply it too.
 
+In commands you can use the {player} placeholder to target the player who clicked on the sign.
+
 ### Commands
 - /bcs add <command To Add> - This is how you create signs, and add multiple commands to signs.
 - /bcs permission <permission Node> - This is the permission node required to use the sign.
