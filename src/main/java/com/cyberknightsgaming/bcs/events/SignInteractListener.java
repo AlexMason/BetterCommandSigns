@@ -14,6 +14,7 @@ import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.service.economy.account.UniqueAccount;
+import org.spongepowered.api.service.pagination.PaginationList;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -107,6 +108,25 @@ public class SignInteractListener {
 						player.sendMessage(BCSConfig.getMessageTemplate("CommandSignDoesNotExist"));
 					}
 					break;
+				case "info":
+					if (BCS.getInstance().getBCSData().isCommandSign(location)) {
+						sign = BCS.getInstance().getBCSData().getCommandSign(location);
+						ArrayList<Text> cmds = new ArrayList<Text>();
+						sign.commands.forEach((v) -> 
+							cmds.add(Text.of(v))
+						);
+						
+						PaginationList.Builder builder = PaginationList.builder();
+						builder.title(Text.of("Sign Information"))
+						.contents(cmds)
+						.header(Text.of("Cost: "+ sign.cost + " | Permission: "+ sign.permission))
+					    .padding(Text.of("#"))
+						.build().sendTo(player);
+						
+					} else {
+						player.sendMessage(BCSConfig.getMessageTemplate("CommandSignDoesNotExist"));
+					}
+					break;
 				default:
 					player.sendMessage(Text.of(editingType +" : "+ editingData));
 					break;
@@ -139,6 +159,11 @@ public class SignInteractListener {
 					    } else {
 					    	player.sendMessage(BCSConfig.getMessageTemplate("SignUseNotEnoughMoney"));
 					    }
+					} else if (sign.getCost() == 0) {
+				    	if (BCSConfig.showMsgOnSignUse) {
+				    		player.sendMessage(BCSConfig.getMessageTemplate("SignUseTransactionComplete"));
+				    	}
+				    	processCommands(player.getName(), sign.commands);
 					}
 				} else {
 					player.sendMessage(BCSConfig.getMessageTemplate("SignUseNoPermissions"));

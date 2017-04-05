@@ -55,6 +55,10 @@ public class BCSCommand implements CommandExecutor {
 				player.sendMessage(BCSConfig.getMessageTemplate("CommandsRemove"));
 				BCS.getInstance().getBCSData().addOrUpdateEditingPlayer(player.getName(), "remove~none");
 			}
+			if (cmdArgs[0].equalsIgnoreCase("info")) {
+				player.sendMessage(BCSConfig.getMessageTemplate("CommandsInfo"));
+				BCS.getInstance().getBCSData().addOrUpdateEditingPlayer(player.getName(), "info~none");
+			}
 			
 			//TODO: add usage command
 		}
