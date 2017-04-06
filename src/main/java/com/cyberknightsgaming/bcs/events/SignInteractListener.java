@@ -29,6 +29,10 @@ public class SignInteractListener {
 	public void leftClickBlockEvent(InteractBlockEvent.Primary event, @First Player player) {
 		Optional<Location<World>> optLoc = event.getTargetBlock().getLocation();
 		if (!optLoc.isPresent()) {
+			if (BCS.getInstance().getBCSData().isEditing(player.getName())) {
+				player.sendMessage(BCSConfig.getMessageTemplate("CommandSignEditingCancelled"));
+				BCS.getInstance().getBCSData().removeEditingPlayer(player.getName());
+			}
 			return;
 		}
 		Location<World> location = (Location<World>) optLoc.get();
@@ -58,6 +62,10 @@ public class SignInteractListener {
 	public void rightClickBlockEvent(InteractBlockEvent.Secondary event, @First Player player) {
 		Optional<Location<World>> optLoc = event.getTargetBlock().getLocation();
 		if (!optLoc.isPresent()) {
+			if (BCS.getInstance().getBCSData().isEditing(player.getName())) {
+				player.sendMessage(BCSConfig.getMessageTemplate("CommandSignEditingCancelled"));
+				BCS.getInstance().getBCSData().removeEditingPlayer(player.getName());
+			}
 			return;
 		}
 		Location<World> location = (Location<World>) optLoc.get();
