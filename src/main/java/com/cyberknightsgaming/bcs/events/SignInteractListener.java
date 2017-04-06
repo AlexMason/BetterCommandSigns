@@ -27,7 +27,11 @@ public class SignInteractListener {
 
 	@Listener(order=Order.EARLY)
 	public void leftClickBlockEvent(InteractBlockEvent.Primary event, @First Player player) {
-		Location<World> location = event.getTargetBlock().getLocation().get();
+		Optional<Location<World>> optLoc = event.getTargetBlock().getLocation();
+		if (!optLoc.isPresent()) {
+			return;
+		}
+		Location<World> location = (Location<World>) optLoc.get();
 		BlockType blockType = location.getBlockType();
 		
 		if (!blockType.equals(BlockTypes.WALL_SIGN)) {
@@ -52,7 +56,11 @@ public class SignInteractListener {
 
 	@Listener(order=Order.EARLY)
 	public void rightClickBlockEvent(InteractBlockEvent.Secondary event, @First Player player) {
-		Location<World> location = event.getTargetBlock().getLocation().get();
+		Optional<Location<World>> optLoc = event.getTargetBlock().getLocation();
+		if (!optLoc.isPresent()) {
+			return;
+		}
+		Location<World> location = (Location<World>) optLoc.get();
 		BlockType blockType = location.getBlockType();
 		
 		if (!blockType.equals(BlockTypes.WALL_SIGN)) {
