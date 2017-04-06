@@ -16,6 +16,7 @@ In commands you can use the {player} placeholder to target the player who clicke
 - /bcs permission <permission Node> - This is the permission node required to use the sign.
 - /bcs cost <cost> - This is the cost for economy. (Uses servers default currency)
 - /bcs remove - You can use this to remove a command sign, without have to actually destroy the sign.
+- /bcs info - Use this to get information about a sign, shows the cost, permissions, and any commands attached.
 
 #### Permissions
 - bcs.admin - for the bcs command.
