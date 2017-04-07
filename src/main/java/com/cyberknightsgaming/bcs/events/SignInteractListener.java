@@ -38,7 +38,7 @@ public class SignInteractListener {
 		Location<World> location = (Location<World>) optLoc.get();
 		BlockType blockType = location.getBlockType();
 		
-		if (!blockType.equals(BlockTypes.WALL_SIGN)) {
+		if (!blockType.equals(BlockTypes.WALL_SIGN) && !blockType.equals(BlockTypes.STANDING_SIGN)) {
 			if (BCS.getInstance().getBCSData().isEditing(player.getName())) {
 				player.sendMessage(BCSConfig.getMessageTemplate("CommandSignEditingCancelled"));
 				BCS.getInstance().getBCSData().removeEditingPlayer(player.getName());
@@ -71,7 +71,7 @@ public class SignInteractListener {
 		Location<World> location = (Location<World>) optLoc.get();
 		BlockType blockType = location.getBlockType();
 		
-		if (!blockType.equals(BlockTypes.WALL_SIGN)) {
+		if (!blockType.equals(BlockTypes.WALL_SIGN) && !blockType.equals(BlockTypes.STANDING_SIGN)) {
 			if (BCS.getInstance().getBCSData().isEditing(player.getName())) {
 				player.sendMessage(BCSConfig.getMessageTemplate("CommandSignEditingCancelled"));
 				BCS.getInstance().getBCSData().removeEditingPlayer(player.getName());
