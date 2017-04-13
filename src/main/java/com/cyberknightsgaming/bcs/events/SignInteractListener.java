@@ -47,9 +47,9 @@ public class SignInteractListener {
 		}
 		
 		if (BCS.getInstance().getBCSData().isCommandSign(location)) {
+			event.setCancelled(true);
 			BCSSign sign = BCS.getInstance().getBCSData().getCommandSign(location);
 			if (!player.hasPermission("bcs.destroy")) {
-				event.setCancelled(true);
 				player.sendMessage(BCSConfig.getMessageTemplate("CannotDestroySigns"));
 			} else {
 				player.sendMessage(BCSConfig.getMessageTemplate("CommandSignDestroyed"));
@@ -157,6 +157,7 @@ public class SignInteractListener {
 			}
 		} else { //USER LOGIC HERE
 			if (BCS.getInstance().getBCSData().isCommandSign(location)) {
+				event.setCancelled(true);
 				BCSSign sign = BCS.getInstance().getBCSData().getCommandSign(location);
 				
 				if (player.hasPermission(sign.getPermission()) || sign.getPermission().equals("")) {
